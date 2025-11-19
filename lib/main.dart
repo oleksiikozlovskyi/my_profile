@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'contacts_screen.dart';
-import 'home_screen.dart';
-import 'profile_screen.dart';
+import 'package:my_profile/screens/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,17 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Мій профіль',
+      title: 'User profile',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
-        '/contacts': (context) => const ContactsScreen(),
-      },
+      home: const ProfileScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
