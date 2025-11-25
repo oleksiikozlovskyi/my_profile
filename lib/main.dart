@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/screens/profile_screen.dart';
+import 'package:my_profile/screens/ToDoHomepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'User profile',
+      title: 'To-Do List',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const ProfileScreen(),
+      home: const ToDoHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
