@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_profile/home_task_11/providers/posts_provider.dart';
+import 'home_task_11/screens/posts_screen.dart';
 import 'home_task_8/screens/todo_homepager.dart';
 import 'package:provider/provider.dart';
 
@@ -8,12 +10,20 @@ import 'home_task_9/screens/recipe_list_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => RecipeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => RecipeProvider()),
+        ChangeNotifierProvider(create: (_) => PostsProvider()..loadPosts()),
+      ],
       child: const MyApp(),
     ),
   );
 }
+
+const String ht_8 = '/home_task_8';
+const String ht_9 = '/home_task_9';
+const String ht_10 = '/home_task_10';
+const String ht_11 = '/home_task_11';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,9 +39,10 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
       routes: {
-        '/home_task_8': (_) => ToDoHomePage(),
-        '/home_task_9': (_) => RecipeListScreen(),
-        '/home_task_10': (_) => AsyncExample(),
+        ht_8: (_) => ToDoHomePage(),
+        ht_9: (_) => RecipeListScreen(),
+        ht_10: (_) => AsyncExample(),
+        ht_11: (_) => PostsScreen(),
       },
     );
   }
@@ -48,9 +59,10 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TaskButton(title: 'Home task #8', route: '/home_task_8'),
-            TaskButton(title: 'Home task #9', route: '/home_task_9'),
-            TaskButton(title: 'Home task #10', route: '/home_task_10'),
+            TaskButton(title: 'Home task #8', route: ht_8),
+            TaskButton(title: 'Home task #9', route: ht_9),
+            TaskButton(title: 'Home task #10', route: ht_10),
+            TaskButton(title: 'Home task #11', route: ht_11),
           ],
         ),
       ),
