@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/providers/recipe_provider.dart';
-import 'package:my_profile/screens/recipe_add_screen.dart';
-import 'package:my_profile/screens/recipe_detail_screen.dart';
+import 'package:my_profile/home_task_9/screens/recipe_add_screen.dart';
+import 'package:my_profile/home_task_9/screens/recipe_detail_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/recipe_provider.dart';
 
 class RecipeListScreen extends StatelessWidget {
   const RecipeListScreen({super.key});

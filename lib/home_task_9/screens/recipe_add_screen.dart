@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/models/recipe.dart';
-import 'package:my_profile/providers/recipe_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../models/recipe.dart';
+import '../providers/recipe_provider.dart';
 
 class RecipeAddScreen extends StatefulWidget {
   const RecipeAddScreen({super.key});
