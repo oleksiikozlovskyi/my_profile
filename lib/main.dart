@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
+import 'home_task_12/screens/login_screen.dart';
 import 'home_task_8/screens/todo_homepager.dart';
 import 'home_task_9/providers/recipe_provider.dart';
 import 'home_task_9/screens/recipe_list_screen.dart';
@@ -8,7 +11,11 @@ import 'home_task_10/async_example.dart';
 import 'home_task_11/screens/posts_screen.dart';
 import 'home_task_11/providers/posts_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -24,6 +31,7 @@ const String ht_8 = '/home_task_8';
 const String ht_9 = '/home_task_9';
 const String ht_10 = '/home_task_10';
 const String ht_11 = '/home_task_11';
+const String ht_12 = '/home_task_12';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -43,6 +51,7 @@ class MyApp extends StatelessWidget {
         ht_9: (_) => RecipeListScreen(),
         ht_10: (_) => AsyncExample(),
         ht_11: (_) => PostsScreen(),
+        ht_12: (_) => LoginScreen(),
       },
     );
   }
@@ -63,6 +72,7 @@ class HomeScreen extends StatelessWidget {
             TaskButton(title: 'Home task #9', route: ht_9),
             TaskButton(title: 'Home task #10', route: ht_10),
             TaskButton(title: 'Home task #11', route: ht_11),
+            TaskButton(title: 'Home task #12', route: ht_12),
           ],
         ),
       ),

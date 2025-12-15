@@ -24,12 +24,12 @@ class RecipeDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text("Інгредієнти",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold)),
-              ...recipe.ingredients.map((i) => Text("- $i")).toList(),
+              ...recipe.ingredients.map((i) => Text("- $i")),
               const SizedBox(height: 20),
               const Text("Інструкції",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold)),
               ...recipe.instructions.map((i) => Padding(
                     padding: const EdgeInsets.only(bottom: 8),
