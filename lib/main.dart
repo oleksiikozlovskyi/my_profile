@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:my_profile/home_task_12/providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
+import 'home_task_12/providers/auth_provider.dart';
 import 'home_task_12/screens/login_screen.dart';
 import 'home_task_8/screens/todo_homepager.dart';
 import 'home_task_9/providers/recipe_provider.dart';
@@ -21,6 +23,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => RecipeProvider()),
         ChangeNotifierProvider(create: (_) => PostsProvider()..loadPosts()),
+        ChangeNotifierProvider(create: (_) => HabitProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
       child: const MyApp(),
     ),

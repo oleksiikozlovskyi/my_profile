@@ -1,10 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 import '../models/habit_model.dart';
-import '../services/habit_service.dart';
+import '../providers/habit_provider.dart';
+
+// import '../services/habit_service.dart';
 import 'add_habit_screen.dart';
 
 class HabitsScreen extends StatelessWidget {
@@ -12,7 +15,7 @@ class HabitsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userId = FirebaseAuth.instance.currentUser!.uid;
+    final habitProvider = context.read<HabitProvider>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Мої звички')),
@@ -26,7 +29,8 @@ class HabitsScreen extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: StreamBuilder<List<Habit>>(
-        stream: HabitService().getHabits(userId),
+        // stream: HabitService().getHabits(userId),
+        stream: habitProvider.habitsStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
@@ -53,7 +57,8 @@ class HabitsScreen extends StatelessWidget {
                       Checkbox(
                         value: done,
                         onChanged: (v) {
-                          HabitService().markToday(habit.id, v!);
+                          // HabitService().markToday(habit.id, v!);
+                          context.read<HabitProvider>().markToday(habit.id, v!);
                         },
                       ),
                       LinearPercentIndicator(

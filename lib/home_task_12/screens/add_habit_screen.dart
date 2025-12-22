@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_profile/home_task_12/models/habit_model.dart';
-import 'package:my_profile/home_task_12/services/habit_service.dart';
+import 'package:my_profile/home_task_12/providers/habit_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddHabitScreen extends StatefulWidget {
   const AddHabitScreen({super.key});
@@ -17,6 +16,8 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final habitProvider = context.watch<HabitProvider>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('Нова звичка')),
       body: Padding(
@@ -37,19 +38,28 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
               onChanged: (v) => setState(() => frequency = v!),
             ),
             ElevatedButton(
-              onPressed: () async {
-                await HabitService().addHabit(
-                  Habit(
-                    id: '',
-                    name: nameController.text,
-                    frequency: frequency,
-                    startDate: startDate,
-                    progress: {},
-                    userId: FirebaseAuth.instance.currentUser!.uid,
-                  ),
-                );
-                Navigator.pop(context);
-              },
+              // onPressed: () async {
+              //   await HabitService().addHabit(
+              //     Habit(
+              //       id: '',
+              //       name: nameController.text,
+              //       frequency: frequency,
+              //       startDate: startDate,
+              //       progress: {},
+              //       userId: FirebaseAuth.instance.currentUser!.uid,
+              //     ),
+              //   );
+              //   Navigator.pop(context);
+              // },
+              onPressed: habitProvider.isLoading
+                  ? null
+                  : () async {
+                      await context.read<HabitProvider>().addHabit(
+                          name: nameController.text,
+                          frequency: frequency,
+                          startDate: startDate);
+                      Navigator.pop(context);
+                    },
               child: const Text('Додати'),
             ),
           ],
